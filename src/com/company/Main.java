@@ -10,6 +10,7 @@ public class Main {
 
         Controller controller = new Controller();
 
+        controller.createAnimal();
         controller.typeOfPen();
         controller.listPens();
 

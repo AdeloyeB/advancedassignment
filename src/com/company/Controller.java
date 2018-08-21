@@ -10,7 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class Controller {
+public class Controller implements IPen, IAnimal, IProgram{
     private Gson gson;
 
     public Controller() {
@@ -162,10 +162,15 @@ public class Controller {
 
         Employee assignedEmployee2 = assignEmployees();
 
+        boolean isHappy = true;
+
+        System.out.println("Is the pen for weak animals?\n");
+        boolean isPrey = checkValid();
+
         System.out.println("Area of the pen takes up?\n");
         double area = in.nextDouble();
 
-        Dry dry = new Dry(UUID.randomUUID().toString(), name,penType, assignedEmployee,assignedEmployee2, area);
+        Dry dry = new Dry(UUID.randomUUID().toString(), name,penType, assignedEmployee,assignedEmployee2, isHappy, isPrey, area);
 
         String json = gson.toJson(dry);
         zoo.penListAdd(dry);
@@ -185,13 +190,19 @@ public class Controller {
 
             Employee assignedEmployee2 = assignEmployees();
 
-            System.out.println("Volume of the pen takes up?\n");
+            boolean isHappy = true;
+
+            System.out.println("Is the pen for weak animals?\n");
+            boolean isPrey = checkValid();
+
+
+        System.out.println("Volume of the pen takes up?\n");
             double volume = in.nextDouble();
 
             System.out.println("Area of the pen takes up?\n");
             double area = in.nextDouble();
 
-            Aquarium aquarium = new Aquarium(UUID.randomUUID().toString(), name,penType, assignedEmployee, assignedEmployee2, volume, area);
+            Aquarium aquarium = new Aquarium(UUID.randomUUID().toString(), name,penType, assignedEmployee, assignedEmployee2,isHappy, isPrey, volume, area);
 
             String json = gson.toJson(aquarium);
             zoo.penListAdd(aquarium);
@@ -210,7 +221,13 @@ public class Controller {
 
         Employee assignedEmployee2 = assignEmployees();
 
-            System.out.println("Volume of the water takes up?\n");
+        boolean isHappy = true;
+
+        System.out.println("Is the pen for weak animals?\n");
+        boolean isPrey = checkValid();
+
+
+        System.out.println("Volume of the water takes up?\n");
         double areaOfLand = in.nextDouble();
 
         System.out.println("Area of the pen takes up?\n");
@@ -221,7 +238,7 @@ public class Controller {
 
         Employee employee = new Employee(UUID.randomUUID().toString(), "john", "farhad");
 
-        PartWetPartDry partWetPartDry = new PartWetPartDry(UUID.randomUUID().toString(), name,penType, assignedEmployee, assignedEmployee2, areaOfLand, areaOfWater, volumeOfWater);
+        PartWetPartDry partWetPartDry = new PartWetPartDry(UUID.randomUUID().toString(), name,penType, assignedEmployee, assignedEmployee2,isHappy, isPrey, areaOfLand, areaOfWater, volumeOfWater);
 
         String json = gson.toJson(partWetPartDry);
         zoo.penListAdd(partWetPartDry);
@@ -240,13 +257,17 @@ public class Controller {
 
         Employee assignedEmployee2 = assignEmployees();
 
+        boolean isHappy = true;
+
+        System.out.println("Is the pen for weak animals?\n");
+        boolean isPrey = checkValid();
 
         System.out.println("Area of the pen takes up?\n");
         double area = in.nextDouble();
 
         Employee employee = new Employee(UUID.randomUUID().toString(), "john", "farhad");
 
-        PettingPen pettingPen = new PettingPen(UUID.randomUUID().toString(), name,penType, assignedEmployee, assignedEmployee2, area);
+        PettingPen pettingPen = new PettingPen(UUID.randomUUID().toString(), name,penType, assignedEmployee, assignedEmployee2, isHappy, isPrey, area);
 
         String json = gson.toJson(pettingPen);
         zoo.penListAdd(pettingPen);
@@ -265,13 +286,18 @@ public class Controller {
 
         Employee assignedEmployee2 = assignEmployees();
 
+        boolean isHappy = true;
+
+        System.out.println("Is the pen for weak animals?\n");
+        boolean isPrey = checkValid();
+
         System.out.println("Volume of the pen takes up?\n");
         double volume = in.nextDouble();
 
         System.out.println("Area of the pen takes up?\n");
         double area = in.nextDouble();
 
-        Aviary aviary = new Aviary(UUID.randomUUID().toString(), name,penType, assignedEmployee, assignedEmployee2, volume, area);
+        Aviary aviary = new Aviary(UUID.randomUUID().toString(), name,penType, assignedEmployee, assignedEmployee2, isHappy, isPrey, volume, area);
 
         String json = gson.toJson(aviary);
         zoo.penListAdd(aviary);
@@ -339,6 +365,10 @@ public class Controller {
 
                 case 5:
                     animalType = "amphibians";
+                    break;
+
+                case 6:
+                    animalType = "flying";
                     break;
 
                 default:
@@ -442,7 +472,116 @@ public class Controller {
         }
     }
 
-    public void checkPenAndAnimalType(){
+    public void checkIfAnimalSuitableForPen(Animal tempAnimal){
+        if(tempAnimal.getType().equals("mammal")){
+            listDryPens();
+            listPartWetPartDryPens();
+        }
+        else if(tempAnimal.getType().equals("aquatic")){
+            listAquariumPens();
+            listPartWetPartDryPens();
+            listAquariumPens();
+        }
+        else if(tempAnimal.getType().equals("dinosaur")){
+            listDryPens();
+            listPartWetPartDryPens();
+        }
+        else if(tempAnimal.getType().equals("insect")){
+            listDryPens();
+            listPartWetPartDryPens();
+        }
+        else if(tempAnimal.getType().equals("amphibians")){
+            listDryPens();
+            listPartWetPartDryPens();
+            listAquariumPens();
+        }
+        else if(tempAnimal.getType().equals("flying")){
+            listAviaryPens();
+        }
+        else if(tempAnimal.getType().equals("mammal") && tempAnimal.isHappy()){
+            listDryPens();
+            listPettingPens();
+        }
+        else if(tempAnimal.getType().equals("dinosaur") && tempAnimal.isHappy()){
+            listDryPens();
+            listPettingPens();
+        }
+        else if(tempAnimal.getType().equals("insect") && tempAnimal.isHappy()){
+            listPettingPens();
+        }
+        else if(tempAnimal.getType().equals("amphibians") && tempAnimal.isHappy()){
+            listPettingPens();
+        }
+        else if(tempAnimal.getType().equals("flying") && tempAnimal.isHappy()){
+            listPettingPens();
+        }
+
+        else if(tempAnimal.getType().equals("flying") && !tempAnimal.isPrey()){
+            listAviaryPensIsPredator();
+        }
+        else if(tempAnimal.getType().equals("mammal") && !tempAnimal.isPrey()){
+            listPartWetPartDryPensIsPredator();
+            listDryPensIsPredator();
+        }
+        else if(tempAnimal.getType().equals("aquatic") && !tempAnimal.isPrey()){
+            listAquariumPensIsPredator();
+            listPartWetPartDryPensIsPredator();
+        }
+        else if(tempAnimal.getType().equals("dinosaur") && !tempAnimal.isPrey()){
+            listPartWetPartDryPensIsPredator();
+            listDryPensIsPredator();
+        }
+        else if(tempAnimal.getType().equals("insect") && !tempAnimal.isPrey()){
+            listDryPensIsPredator();
+            listPartWetPartDryPensIsPredator();
+        }
+        else if(tempAnimal.getType().equals("amphibians") && !tempAnimal.isPrey()){
+            listDryPens();
+            listPartWetPartDryPensIsPredator();
+            listAquariumPensIsPredator();
+        }
+
+    }
+
+    private void listDryPensIsPredator() {
+
+    }
+
+    private void listPartWetPartDryPensIsPredator(){
+
+    }
+
+    private void listAquariumPensIsPredator(){
+
+    }
+
+    private void listAviaryPensIsPredator(){
+
+    }
+
+    private void listDryPens() {
+        for (Pen pen: zoo.getPenList())
+        {
+            System.out.println(pen.id + "\n");
+            System.out.println(pen.name + "\n");
+            System.out.println(pen.getPenType().equals("dry") + "\n");
+            System.out.println(pen.employee.name + "\n");
+            System.out.println(pen.employee2.name + "\n");
+        }
+    }
+
+    private void listPettingPens(){
+
+    }
+    private void listPartWetPartDryPens(){
+
+    }
+
+    private void listAquariumPens(){
+
+    }
+
+    private void listAviaryPens(){
 
     }
 

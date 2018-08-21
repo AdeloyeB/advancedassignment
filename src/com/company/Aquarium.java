@@ -7,8 +7,8 @@ public class Aquarium extends Pen {
     private double volume;
     private double area;
 
-    public Aquarium(String id, String name, String penType, Employee employee, Employee employee2, double volume, double area) {
-        super(id, name, penType, employee, employee2);
+    public Aquarium(String id, String name, String penType, Employee employee, Employee employee2, boolean isHappyPen, boolean isPreyPen, double volume, double area) {
+        super(id, name, penType, employee, employee2, isHappyPen, isPreyPen);
         this.volume = volume;
         this.area = area;
     }

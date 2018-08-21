@@ -8,8 +8,8 @@ public class PartWetPartDry extends Pen {
     private double areaofWater;
     private double volumeofWater;
 
-    public PartWetPartDry(String id, String name, String penType, Employee employee, Employee employee2, double areaofLand, double areaofWater, double volumeofWater) {
-        super(id, name, penType, employee, employee2);
+    public PartWetPartDry(String id, String name, String penType, Employee employee, Employee employee2, boolean isHappyPen, boolean isPreyPen, double areaofLand, double areaofWater, double volumeofWater) {
+        super(id, name, penType, employee, employee2, isHappyPen, isPreyPen);
         this.areaofLand = areaofLand;
         this.areaofWater = areaofWater;
         this.volumeofWater = volumeofWater;

@@ -9,14 +9,18 @@ public class Pen {
     private String penType;
     protected Employee employee;
     protected Employee employee2;
+    private boolean isHappyPen;
+    private boolean isPreyPen;
     private List<Animal> animalList;
 
-    public Pen(String id, String name, String penType, Employee employee, Employee employee2) {
+    public Pen(String id, String name, String penType, Employee employee, Employee employee2, boolean isHappyPen, boolean isPreyPen) {
         this.id = id;
         this.name = name;
         this.penType = penType;
         this.employee = employee;
         this.employee2 = employee2;
+        this.isHappyPen = isHappyPen;
+        this.isPreyPen = isPreyPen;
         animalList = new ArrayList<>();
     }
 
@@ -60,6 +64,22 @@ public class Pen {
         this.employee2 = employee2;
     }
 
+    public boolean isHappyPen() {
+        return isHappyPen;
+    }
+
+    public void setHappyPen(boolean happyPen) {
+        isHappyPen = happyPen;
+    }
+
+    public boolean isPreyPen() {
+        return isPreyPen;
+    }
+
+    public void setPreyPen(boolean preyPen) {
+        isPreyPen = preyPen;
+    }
+
     public List<Animal> getAnimalList() {
         return animalList;
     }
@@ -68,9 +88,8 @@ public class Pen {
         this.animalList = animalList;
     }
 
-    public void addAnimal(Animal x){
-        animalList.add(x);
-    }
+    public void addAnim
+
     @Override
     public String toString() {
         return "Pen{" +
@@ -79,6 +98,8 @@ public class Pen {
                 ", penType='" + penType + '\'' +
                 ", employee=" + employee.toString() +
                 ", employee2=" + employee2.toString() +
+                ", isHappyPen=" + isHappyPen +
+                ", isPreyPen=" + isPreyPen +
                 ", animalList=" + animalList +
                 '}';
     }
