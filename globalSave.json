@@ -1,7 +1,27 @@
 {
   "zoo_name": "mainZoo",
   "employeeList": [],
-  "penList": [],
+  "penList": [
+    {
+      "area": 23.0,
+      "id": "a0f8acc9-8419-4ab3-8dec-81de86b8a56c",
+      "name": "Petting",
+      "penType": "pettingpen",
+      "employee": {
+        "last_name": "richard",
+        "id": "4f1bae6d-85e7-4fbc-b296-9744f245f04f",
+        "name": "alex"
+      },
+      "employee2": {
+        "last_name": "lucky",
+        "id": "008272cc-81c8-418f-a744-d7be0b22f55c",
+        "name": "troy"
+      },
+      "isHappyPen": true,
+      "isPreyPen": true,
+      "animalList": []
+    }
+  ],
   "unListedAnimals": [
     {
       "specie": "Human",
@@ -10,8 +30,18 @@
       "volume": 0.0,
       "isPrey": true,
       "isHappy": true,
-      "id": "3d05521a-e2a1-405a-a83b-7447519ba7b6",
+      "id": "9b0edf81-df73-4c1c-beae-256c7d8b1aac",
       "name": "Taq"
+    },
+    {
+      "specie": "Human",
+      "type": "mammal",
+      "area": 23.0,
+      "volume": 0.0,
+      "isPrey": true,
+      "isHappy": true,
+      "id": "6dc8779d-af18-489f-8ab1-1757f34f11a5",
+      "name": "Bode"
     }
   ]
 }

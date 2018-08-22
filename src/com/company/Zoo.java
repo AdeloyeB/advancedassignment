@@ -57,6 +57,8 @@ public class Zoo {
         unListedAnimals.remove(removedAnimal);
     }
 
+    public void employeeAdd(Employee employee){employeeList.add(employee);}
+
     public void penListAdd(Pen x){penList.add(x);}
 
     @Override

@@ -28,7 +28,22 @@ public class Controller implements IPen, IAnimal, IProgram{
 
     public void getAPIData(){
         //RETRIEVES OPENEATHERMAP API DATA: WIND, TEMP, HUMIDITY
-        api.getAPI();
+        Scanner in = new Scanner(System.in);
+
+        String choice = in.next();
+
+        while(true){
+            switch (choice.toLowerCase()) {
+                case "r":
+                    api.getAPI();
+                    return;
+                case "q":
+                    break;
+
+                default:
+                    System.out.println("Wrong value");
+            }
+        }
     }
 
     //REFACTOR THIS CODE SO IT ONLY RUNS IF THE OBJECTS DON'T EXIST. CHEAT METHOD: RUN ONCE THEN DELETE THE OBJECTS ONCE PROPERLY STORED IN THE JSON
@@ -60,10 +75,10 @@ public class Controller implements IPen, IAnimal, IProgram{
                     String(Files.readAllBytes(filePath));
             System.out.println(jsonString);
 
-            Zoo loaded =
+             zoo =
                     gson.fromJson(jsonString, Zoo.class);
             System.out.println("Loaded!");
-            return loaded;
+            return zoo;
         } catch (Exception e) {
             System.out.println(
                     "Error loading file: " + e.getMessage());
@@ -424,7 +439,6 @@ public class Controller implements IPen, IAnimal, IProgram{
 
         public Pen penNameCheck(){
             Scanner in = new Scanner(System.in);
-            listPens();
             System.out.println("Enter the name of the Pen you want");
 
             String tempPen = in.next().toLowerCase();
@@ -445,6 +459,8 @@ public class Controller implements IPen, IAnimal, IProgram{
         }
 
         public void completeAssignAnimal(){
+            Animal getAnimal = getAnimal();
+            checkIfAnimalSuitableForPen(getAnimal);
             Animal transferAnimal = animalNameCheck();
             Pen targetedPen = penNameCheck();
             assignAnimal(transferAnimal, targetedPen);
@@ -459,6 +475,21 @@ public class Controller implements IPen, IAnimal, IProgram{
             System.out.println(animal.getType() + "\n");
             System.out.println(animal.name);
         }
+    }
+
+    public Animal getAnimal(){
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the name of the Animal you want");
+
+        String tempAnimal = in.next().toLowerCase();
+        Animal tempAnimalObject = null;
+
+        for (Animal animal: zoo.getUnListedAnimals()){
+            if (animal.name.toLowerCase().equals(tempAnimal)){
+                tempAnimalObject = animal;
+            }
+        }
+        return tempAnimalObject;
     }
 
     public void listPens(){

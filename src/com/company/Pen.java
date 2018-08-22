@@ -88,7 +88,10 @@ public class Pen {
         this.animalList = animalList;
     }
 
-    public void addAnim
+
+    public void addAnimal(Animal x){
+        animalList.add(x);
+    }
 
     @Override
     public String toString() {
@@ -96,8 +99,8 @@ public class Pen {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", penType='" + penType + '\'' +
-                ", employee=" + employee.toString() +
-                ", employee2=" + employee2.toString() +
+                ", employee=" + employee.name +
+                ", employee2=" + employee2.name +
                 ", isHappyPen=" + isHappyPen +
                 ", isPreyPen=" + isPreyPen +
                 ", animalList=" + animalList +
