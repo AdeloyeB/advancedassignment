@@ -2,6 +2,7 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Pen {
     protected String id;
@@ -9,17 +10,21 @@ public class Pen {
     private String penType;
     protected Employee employee;
     protected Employee employee2;
-    private boolean isHappyPen;
+    protected double area;
+    protected  double volume;
+    private boolean isPettable;
     private boolean isPreyPen;
     private List<Animal> animalList;
 
-    public Pen(String id, String name, String penType, Employee employee, Employee employee2, boolean isHappyPen, boolean isPreyPen) {
-        this.id = id;
+    public Pen(String name, String penType, Employee employee, Employee employee2, double area, double volume, boolean isPettable, boolean isPreyPen) {
+        id = UUID.randomUUID().toString();
         this.name = name;
         this.penType = penType;
         this.employee = employee;
         this.employee2 = employee2;
-        this.isHappyPen = isHappyPen;
+        this.area = area;
+        this.volume = volume;
+        this.isPettable = isPettable;
         this.isPreyPen = isPreyPen;
         animalList = new ArrayList<>();
     }
@@ -64,12 +69,28 @@ public class Pen {
         this.employee2 = employee2;
     }
 
-    public boolean isHappyPen() {
-        return isHappyPen;
+    public double getArea() {
+        return area;
     }
 
-    public void setHappyPen(boolean happyPen) {
-        isHappyPen = happyPen;
+    public void setArea(double area) {
+        this.area = area;
+    }
+
+    public double getVolume() {
+        return volume;
+    }
+
+    public void setVolume(double volume) {
+        this.volume = volume;
+    }
+
+    public boolean isPettable() {
+        return isPettable;
+    }
+
+    public void setPettable(boolean pettable) {
+        isPettable = pettable;
     }
 
     public boolean isPreyPen() {
@@ -88,9 +109,8 @@ public class Pen {
         this.animalList = animalList;
     }
 
-
-    public void addAnimal(Animal x){
-        animalList.add(x);
+    public void addAnimal(Animal animal){
+        animalList.add(animal);
     }
 
     @Override
@@ -99,9 +119,11 @@ public class Pen {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", penType='" + penType + '\'' +
-                ", employee=" + employee.name +
-                ", employee2=" + employee2.name +
-                ", isHappyPen=" + isHappyPen +
+                ", employee=" + employee +
+                ", employee2=" + employee2 +
+                ", area=" + area +
+                ", volume=" + volume +
+                ", isPettable=" + isPettable +
                 ", isPreyPen=" + isPreyPen +
                 ", animalList=" + animalList +
                 '}';

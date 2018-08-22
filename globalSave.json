@@ -1,47 +1,112 @@
 {
   "zoo_name": "mainZoo",
-  "employeeList": [],
+  "employeeList": [
+    {
+      "last_name": "Hemming",
+      "id": "1377eab0-ab47-463a-9e02-70a861291b2f",
+      "name": "Ian"
+    },
+    {
+      "last_name": "Casper",
+      "id": "e3af8c43-0d17-45ea-a55f-1f274298f35a",
+      "name": "Alex"
+    },
+    {
+      "last_name": "Smith",
+      "id": "8b54c602-e676-43bd-a462-bbd3c22b4a65",
+      "name": "John"
+    },
+    {
+      "last_name": "Reynolds",
+      "id": "a952ee07-0a29-4bef-85fc-55d06c41fadf",
+      "name": "Ryan"
+    }
+  ],
   "penList": [
     {
-      "area": 23.0,
-      "id": "a0f8acc9-8419-4ab3-8dec-81de86b8a56c",
-      "name": "Petting",
-      "penType": "pettingpen",
+      "isDry": true,
+      "id": "cc172534-c218-4474-9a45-fa21f14b6287",
+      "name": "Default Dry",
+      "penType": "dinosaur",
       "employee": {
-        "last_name": "richard",
-        "id": "4f1bae6d-85e7-4fbc-b296-9744f245f04f",
-        "name": "alex"
+        "last_name": "Hemming",
+        "id": "1377eab0-ab47-463a-9e02-70a861291b2f",
+        "name": "Ian"
       },
       "employee2": {
-        "last_name": "lucky",
-        "id": "008272cc-81c8-418f-a744-d7be0b22f55c",
-        "name": "troy"
+        "last_name": "Smith",
+        "id": "8b54c602-e676-43bd-a462-bbd3c22b4a65",
+        "name": "John"
       },
-      "isHappyPen": true,
-      "isPreyPen": true,
+      "area": 120.0,
+      "volume": 0.0,
+      "isPettable": false,
+      "isPreyPen": false,
+      "animalList": []
+    },
+    {
+      "isAquarium": true,
+      "id": "b6994921-9a45-4f04-bfcd-7c75c0ade7fb",
+      "name": "Default Aquarium",
+      "penType": "aquarium",
+      "employee": {
+        "last_name": "Casper",
+        "id": "e3af8c43-0d17-45ea-a55f-1f274298f35a",
+        "name": "Alex"
+      },
+      "employee2": {
+        "last_name": "Hemming",
+        "id": "1377eab0-ab47-463a-9e02-70a861291b2f",
+        "name": "Ian"
+      },
+      "area": 0.0,
+      "volume": 120.0,
+      "isPettable": false,
+      "isPreyPen": false,
+      "animalList": []
+    },
+    {
+      "isAviary": true,
+      "id": "e167e02e-4304-4577-bb70-b81d323d4f03",
+      "name": "Default Aviary",
+      "penType": "aviary",
+      "employee": {
+        "last_name": "Reynolds",
+        "id": "a952ee07-0a29-4bef-85fc-55d06c41fadf",
+        "name": "Ryan"
+      },
+      "employee2": {
+        "last_name": "Casper",
+        "id": "e3af8c43-0d17-45ea-a55f-1f274298f35a",
+        "name": "Alex"
+      },
+      "area": 0.0,
+      "volume": 120.0,
+      "isPettable": false,
+      "isPreyPen": false,
+      "animalList": []
+    },
+    {
+      "isPettingPen": true,
+      "id": "a6e30299-d23f-40f9-938f-48f1ceabff41",
+      "name": "Default PettingPen",
+      "penType": "aquarium",
+      "employee": {
+        "last_name": "Smith",
+        "id": "8b54c602-e676-43bd-a462-bbd3c22b4a65",
+        "name": "John"
+      },
+      "employee2": {
+        "last_name": "Casper",
+        "id": "e3af8c43-0d17-45ea-a55f-1f274298f35a",
+        "name": "Alex"
+      },
+      "area": 120.0,
+      "volume": 0.0,
+      "isPettable": true,
+      "isPreyPen": false,
       "animalList": []
     }
   ],
-  "unListedAnimals": [
-    {
-      "specie": "Human",
-      "type": "mammal",
-      "area": 23.0,
-      "volume": 0.0,
-      "isPrey": true,
-      "isHappy": true,
-      "id": "9b0edf81-df73-4c1c-beae-256c7d8b1aac",
-      "name": "Taq"
-    },
-    {
-      "specie": "Human",
-      "type": "mammal",
-      "area": 23.0,
-      "volume": 0.0,
-      "isPrey": true,
-      "isHappy": true,
-      "id": "6dc8779d-af18-489f-8ab1-1757f34f11a5",
-      "name": "Bode"
-    }
-  ]
+  "unListedAnimals": []
 }

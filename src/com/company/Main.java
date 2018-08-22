@@ -12,8 +12,6 @@ public class Main {
 
 
         controller.globalLoad();
-        controller.createAnimal();
-        controller.typeOfPen();
         controller.globaLSave();
 
 

@@ -47,11 +47,6 @@ public class Controller implements IPen, IAnimal, IProgram{
     }
 
     //REFACTOR THIS CODE SO IT ONLY RUNS IF THE OBJECTS DON'T EXIST. CHEAT METHOD: RUN ONCE THEN DELETE THE OBJECTS ONCE PROPERLY STORED IN THE JSON
-    Employee employee = new Employee(UUID.randomUUID().toString(), "Ian", "hemming");
-    Employee employee2 = new Employee(UUID.randomUUID().toString(), "alex","richard");
-    Employee employee3 = new Employee(UUID.randomUUID().toString(), "troy","lucky");
-    Employee employee4 = new Employee(UUID.randomUUID().toString(), "kate","hopkins");
-
     public void globaLSave(){
 
         String zooJson = gson.toJson(zoo);
@@ -80,8 +75,8 @@ public class Controller implements IPen, IAnimal, IProgram{
             System.out.println("Loaded!");
             return zoo;
         } catch (Exception e) {
-            System.out.println(
-                    "Error loading file: " + e.getMessage());
+            System.out.println("You must be a new User! \nHere is some fresh new zoo for you to manage");
+            newDataLoad();
         }
         return null;
     }
@@ -110,11 +105,32 @@ public class Controller implements IPen, IAnimal, IProgram{
         System.out.println("Enter type:\n");
         String type = checkTypeAnimal();
 
-        System.out.println("Area that the Animal takes up?\n");
-        double area = in.nextDouble();
 
-        System.out.println("Volume that the Animal takes up?\n");
-        double volume = in.nextDouble();
+        System.out.println("Is the animal going to remain in the water or/and in the air?");
+        boolean airOrWaterChoice = checkValid();
+
+        double area;
+        System.out.println("Area that the Animal takes up?\n");
+        if(airOrWaterChoice){
+            area = 0;
+        }
+        else{
+            area = in.nextDouble();
+        }
+
+
+        System.out.println("Is the animal going to remain on Land?");
+        boolean landChoice = checkValid();
+        double volume;
+
+        if(landChoice){
+            volume = 0;
+        } else{
+            System.out.println("Volume that the Animal takes up?\n");
+            volume = in.nextDouble();
+        }
+
+
 
         System.out.println("Is the animal a prey?\n");
         boolean isPrey = checkValid();
@@ -124,7 +140,7 @@ public class Controller implements IPen, IAnimal, IProgram{
 
 
 
-        Animal animal = new Animal(UUID.randomUUID().toString(),name, specie,type, area, volume, isPrey, isHappy);
+        Animal animal = new Animal(name, specie,type, area, volume, isPrey, isHappy);
 
         //String json = gson.toJson(animal);
 
@@ -143,19 +159,19 @@ public class Controller implements IPen, IAnimal, IProgram{
         switch (choice) {
 
             case 1:
-                assignedEmployee = employee;
+                assignedEmployee = zoo.getEmployee(choice);
                 break;
 
             case 2:
-                assignedEmployee = employee2;
+                assignedEmployee = zoo.getEmployee(choice);
                 break;
 
             case 3:
-                assignedEmployee = employee3;
+                assignedEmployee = zoo.getEmployee(choice);
                 break;
 
             case 4:
-                assignedEmployee = employee4;
+                assignedEmployee = zoo.getEmployee(choice);
                 break;
 
             default:
@@ -177,7 +193,7 @@ public class Controller implements IPen, IAnimal, IProgram{
 
         Employee assignedEmployee2 = assignEmployees();
 
-        boolean isHappy = true;
+        boolean isPettable = false;
 
         System.out.println("Is the pen for weak animals?\n");
         boolean isPrey = checkValid();
@@ -185,7 +201,7 @@ public class Controller implements IPen, IAnimal, IProgram{
         System.out.println("Area of the pen takes up?\n");
         double area = in.nextDouble();
 
-        Dry dry = new Dry(UUID.randomUUID().toString(), name,penType, assignedEmployee,assignedEmployee2, isHappy, isPrey, area);
+        Dry dry = new Dry(name,penType, assignedEmployee,assignedEmployee2, area, 0 ,isPettable, isPrey);
 
         String json = gson.toJson(dry);
         zoo.penListAdd(dry);
@@ -205,7 +221,7 @@ public class Controller implements IPen, IAnimal, IProgram{
 
             Employee assignedEmployee2 = assignEmployees();
 
-            boolean isHappy = true;
+            boolean isPettable = true;
 
             System.out.println("Is the pen for weak animals?\n");
             boolean isPrey = checkValid();
@@ -217,7 +233,7 @@ public class Controller implements IPen, IAnimal, IProgram{
             System.out.println("Area of the pen takes up?\n");
             double area = in.nextDouble();
 
-            Aquarium aquarium = new Aquarium(UUID.randomUUID().toString(), name,penType, assignedEmployee, assignedEmployee2,isHappy, isPrey, volume, area);
+            Aquarium aquarium = new Aquarium(name,penType, assignedEmployee, assignedEmployee2,area, volume, isPettable, isPrey);
 
             String json = gson.toJson(aquarium);
             zoo.penListAdd(aquarium);
@@ -232,28 +248,22 @@ public class Controller implements IPen, IAnimal, IProgram{
 
         String penType = "partwetpartdry";
 
-        Employee assignedEmployee = assignEmployees();
-
-        Employee assignedEmployee2 = assignEmployees();
-
-        boolean isHappy = true;
+        boolean isPettable = true;
 
         System.out.println("Is the pen for weak animals?\n");
         boolean isPrey = checkValid();
 
-
-        System.out.println("Volume of the water takes up?\n");
-        double areaOfLand = in.nextDouble();
-
         System.out.println("Area of the pen takes up?\n");
-        double areaOfWater = in.nextDouble();
+        double area = in.nextDouble();
 
-        System.out.println("Volume of water  the pen takes up?\n");
-        double volumeOfWater = in.nextDouble();
+        System.out.println("Volume of water the pen takes up?\n");
+        double volume = in.nextDouble();
 
-        Employee employee = new Employee(UUID.randomUUID().toString(), "john", "farhad");
+        Employee assignedEmployee = assignEmployees();
 
-        PartWetPartDry partWetPartDry = new PartWetPartDry(UUID.randomUUID().toString(), name,penType, assignedEmployee, assignedEmployee2,isHappy, isPrey, areaOfLand, areaOfWater, volumeOfWater);
+        Employee assignedEmployee2 = assignEmployees();
+
+        PartWetPartDry partWetPartDry = new PartWetPartDry(name,penType, assignedEmployee, assignedEmployee2,area, volume, isPettable, isPrey);
 
         String json = gson.toJson(partWetPartDry);
         zoo.penListAdd(partWetPartDry);
@@ -272,7 +282,7 @@ public class Controller implements IPen, IAnimal, IProgram{
 
         Employee assignedEmployee2 = assignEmployees();
 
-        boolean isHappy = true;
+        boolean isPettable = true;
 
         System.out.println("Is the pen for weak animals?\n");
         boolean isPrey = checkValid();
@@ -280,9 +290,7 @@ public class Controller implements IPen, IAnimal, IProgram{
         System.out.println("Area of the pen takes up?\n");
         double area = in.nextDouble();
 
-        Employee employee = new Employee(UUID.randomUUID().toString(), "john", "farhad");
-
-        PettingPen pettingPen = new PettingPen(UUID.randomUUID().toString(), name,penType, assignedEmployee, assignedEmployee2, isHappy, isPrey, area);
+        PettingPen pettingPen = new PettingPen(name,penType, assignedEmployee, assignedEmployee2,area, 0, isPettable, isPrey);
 
         String json = gson.toJson(pettingPen);
         zoo.penListAdd(pettingPen);
@@ -301,7 +309,7 @@ public class Controller implements IPen, IAnimal, IProgram{
 
         Employee assignedEmployee2 = assignEmployees();
 
-        boolean isHappy = true;
+        boolean isPettable = true;
 
         System.out.println("Is the pen for weak animals?\n");
         boolean isPrey = checkValid();
@@ -312,7 +320,7 @@ public class Controller implements IPen, IAnimal, IProgram{
         System.out.println("Area of the pen takes up?\n");
         double area = in.nextDouble();
 
-        Aviary aviary = new Aviary(UUID.randomUUID().toString(), name,penType, assignedEmployee, assignedEmployee2, isHappy, isPrey, volume, area);
+        Aviary aviary = new Aviary(name,penType, assignedEmployee, assignedEmployee2,area, volume, isPettable, isPrey);
 
         String json = gson.toJson(aviary);
         zoo.penListAdd(aviary);
@@ -403,6 +411,7 @@ public class Controller implements IPen, IAnimal, IProgram{
             int choice = in.nextInt();
             switch(choice){
                 case 1:
+                    isValid = true;
                     break;
 
                 case 2:
@@ -575,7 +584,15 @@ public class Controller implements IPen, IAnimal, IProgram{
     }
 
     private void listDryPensIsPredator() {
-
+        for (Pen pen: zoo.getPenList())
+        {
+            System.out.println(pen.id + "\n");
+            System.out.println(pen.name + "\n");
+            System.out.println(pen.getPenType().equals("dry") + "\n");
+            System.out.println(pen.isPreyPen());
+            System.out.println(pen.employee.name + "\n");
+            System.out.println(pen.employee2.name + "\n");
+        }
     }
 
     private void listPartWetPartDryPensIsPredator(){
@@ -602,18 +619,69 @@ public class Controller implements IPen, IAnimal, IProgram{
     }
 
     private void listPettingPens(){
-
+        for (Pen pen: zoo.getPenList())
+        {
+            System.out.println(pen.id + "\n");
+            System.out.println(pen.name + "\n");
+            System.out.println(pen.getPenType().equals("pettingpen") + "\n");
+            System.out.println(pen.employee.name + "\n");
+            System.out.println(pen.employee2.name + "\n");
+        }
     }
     private void listPartWetPartDryPens(){
-
+        for (Pen pen: zoo.getPenList())
+        {
+            System.out.println(pen.id + "\n");
+            System.out.println(pen.name + "\n");
+            System.out.println(pen.getPenType().equals("partwetpartdry") + "\n");
+            System.out.println(pen.employee.name + "\n");
+            System.out.println(pen.employee2.name + "\n");
+        }
     }
 
     private void listAquariumPens(){
-
+        for (Pen pen: zoo.getPenList())
+        {
+            System.out.println(pen.id + "\n");
+            System.out.println(pen.name + "\n");
+            System.out.println(pen.getPenType().equals("aquarium") + "\n");
+            System.out.println(pen.employee.name + "\n");
+            System.out.println(pen.employee2.name + "\n");
+        }
     }
 
     private void listAviaryPens(){
+        for (Pen pen: zoo.getPenList())
+        {
+            System.out.println(pen.id + "\n");
+            System.out.println(pen.name + "\n");
+            System.out.println(pen.getPenType().equals("aviary") + "\n");
+            System.out.println(pen.employee.name + "\n");
+            System.out.println(pen.employee2.name + "\n");
+        }
+    }
 
+    public void employeeCheck(){
+        if(zoo.getEmployeeList().isEmpty()){
+            zoo.newEmployee("Ian", "Hemming");
+            zoo.newEmployee("Alex", "Casper");
+            zoo.newEmployee("John", "Smith");
+            zoo.newEmployee("Ryan", "Reynolds");
+        }
+    }
+
+    public void defaultPenCheck(){
+        if(zoo.getPenList().isEmpty()){
+            zoo.newDry("Default Dry", "dinosaur", zoo.getEmployee(0), zoo.getEmployee(2));
+            zoo.newAquarium("Default Aquarium", "aquarium", zoo.getEmployee(1), zoo.getEmployee(0));
+            zoo.newAviary("Default Aviary", "aviary", zoo.getEmployee(3), zoo.getEmployee(1));
+            zoo.newPettingPen("Default PettingPen", "aquarium", zoo.getEmployee(2), zoo.getEmployee(1));
+        }
+    }
+
+    public void newDataLoad(){
+        employeeCheck();
+        defaultPenCheck();
     }
 
 

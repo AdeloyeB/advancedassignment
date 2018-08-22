@@ -10,8 +10,8 @@ public class Animal extends LivingCreature {
     private boolean isPrey;
     private boolean isHappy;
 
-    public Animal(String id, String name, String specie, String type, double area, double volume, boolean isPrey, boolean isHappy) {
-        super(id, name);
+    public Animal(String name, String specie, String type, double area, double volume, boolean isPrey, boolean isHappy) {
+        super(name);
         this.specie = specie;
         this.type = type;
         this.area = area;

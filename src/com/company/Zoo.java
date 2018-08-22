@@ -57,7 +57,51 @@ public class Zoo {
         unListedAnimals.remove(removedAnimal);
     }
 
+    public void penAdd(Pen pen){penListAdd(pen);}
+
     public void employeeAdd(Employee employee){employeeList.add(employee);}
+
+    public Employee getEmployee(int x){
+        Employee foundEmployee = employeeList.get(x);
+        return foundEmployee;
+    }
+
+
+    public Employee newEmployee(String employeeFirstName, String employeeLastName){
+        Employee employee =  new Employee(employeeFirstName, employeeLastName);
+        employeeAdd(employee);
+        return employee;
+    }
+
+    public Aquarium newAquarium(String name, String penType, Employee employeeOne, Employee employeeTwo){
+        Aquarium aquarium = new Aquarium(name, penType, employeeOne, employeeTwo, 0, 120, false, false);
+        penAdd(aquarium);
+        return aquarium;
+    }
+
+    public Aviary newAviary(String name, String penType, Employee employeeOne, Employee employeeTwo){
+        Aviary aviary = new Aviary(name, penType, employeeOne, employeeTwo, 0, 120, false, false);
+        penAdd(aviary);
+        return aviary;
+    }
+
+    public Dry newDry(String name, String penType, Employee employeeOne, Employee employeeTwo){
+        Dry dry = new Dry(name, penType, employeeOne, employeeTwo, 120, 0, false, false);
+        penAdd(dry);
+        return dry;
+    }
+
+    public PartWetPartDry partWetPartDry(String name, String penType, Employee employeeOne, Employee employeeTwo){
+        PartWetPartDry partWetPartDry = new PartWetPartDry(name, penType, employeeOne, employeeTwo, 60, 60, false, false);
+        penAdd(partWetPartDry);
+        return partWetPartDry;
+    }
+
+    public PettingPen newPettingPen(String name, String penType, Employee employeeOne, Employee employeeTwo){
+        PettingPen pettingPen = new PettingPen(name, penType, employeeOne, employeeTwo, 120, 0, true, false);
+        penAdd(pettingPen);
+        return pettingPen;
+    }
 
     public void penListAdd(Pen x){penList.add(x);}
 

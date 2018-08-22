@@ -4,29 +4,21 @@ import java.util.List;
 
 public class Aquarium extends Pen {
 
-    private double volume;
-    private double area;
+    protected boolean isAquarium;
 
-    public Aquarium(String id, String name, String penType, Employee employee, Employee employee2, boolean isHappyPen, boolean isPreyPen, double volume, double area) {
-        super(id, name, penType, employee, employee2, isHappyPen, isPreyPen);
-        this.volume = volume;
-        this.area = area;
+    public Aquarium(String name, String penType, Employee employee, Employee employee2, double area, double volume, boolean isPettable, boolean isPreyPen) {
+        super(name, penType, employee, employee2, area, volume, isPettable, isPreyPen);
+        isAquarium = true;
     }
 
-    public double getVolume() {
-        return volume;
+    public boolean isAquarium() {
+        return isAquarium;
     }
 
-    public void setVolume(double volume) {
-        this.volume = volume;
+    public void setAquarium(boolean aquarium) {
+        isAquarium = aquarium;
     }
 
-    public double getArea() {
-        return area;
-    }
 
-    public void setArea(double area) {
-        this.area = area;
-    }
 }
 
