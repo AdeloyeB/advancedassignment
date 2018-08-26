@@ -7,12 +7,9 @@ public class Main {
     public static void main(String[] args){
 	// write your code here
 
+        MainMenu mainMenu = new MainMenu();
 
-        Controller controller = new Controller();
-
-
-        controller.globalLoad();
-        controller.globaLSave();
+        mainMenu.activeMenu();
 
 
     }

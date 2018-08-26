@@ -3,7 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Zoo {
+public class Zoo { //ALL ZOO INFO: PENS, ANIMALS AND EMPLOYEES ARE ALL STORED HERE
     private String zoo_name;
     private List<Employee> employeeList;
     private List<Pen> penList;
@@ -67,8 +67,8 @@ public class Zoo {
     }
 
 
-    public Employee newEmployee(String employeeFirstName, String employeeLastName){
-        Employee employee =  new Employee(employeeFirstName, employeeLastName);
+    public Employee newEmployee(String employeeFirstName, String employeeLastName, String employeePenType, String employeePenType2){
+        Employee employee =  new Employee(employeeFirstName,employeeLastName, employeePenType, employeePenType2);
         employeeAdd(employee);
         return employee;
     }

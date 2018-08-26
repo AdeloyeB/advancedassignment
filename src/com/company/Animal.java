@@ -8,16 +8,16 @@ public class Animal extends LivingCreature {
     private double area;
     private double volume;
     private boolean isPrey;
-    private boolean isHappy;
+    private boolean isPettable;
 
-    public Animal(String name, String specie, String type, double area, double volume, boolean isPrey, boolean isHappy) {
+    public Animal(String name, String specie, String type, double area, double volume, boolean isPrey, boolean isPettable) {
         super(name);
         this.specie = specie;
         this.type = type;
         this.area = area;
         this.volume = volume;
         this.isPrey = isPrey;
-        this.isHappy = isHappy;
+        this.isPettable = isPettable;
     }
 
     public String getSpecie() {
@@ -52,7 +52,6 @@ public class Animal extends LivingCreature {
         this.volume = volume;
     }
 
-
     public boolean isPrey() {
         return isPrey;
     }
@@ -61,26 +60,12 @@ public class Animal extends LivingCreature {
         isPrey = prey;
     }
 
-    public boolean isHappy() {
-        return isHappy;
+    public boolean isPettable() {
+        return isPettable;
     }
 
-    public void setHappy(boolean happy) {
-        isHappy = happy;
-    }
-
-    @Override
-    public String toString() {
-        return "Animal{" +
-                ", id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                "specie='" + specie + '\'' +
-                ", type='" + type + '\'' +
-                ", area=" + area +
-                ", volume=" + volume +
-                ", isPrey=" + isPrey +
-                ", isHappy=" + isHappy +
-                '}';
+    public void setPettable(boolean pettable) {
+        isPettable = pettable;
     }
 }
 
