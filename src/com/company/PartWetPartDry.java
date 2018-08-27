@@ -10,4 +10,12 @@ public class PartWetPartDry extends Pen {
         super(name, penType, employee, employee2, area, volume, isPettable, isPreyPen);
         isPartWetPartDry = true;
     }
+
+    public boolean isPartWetPartDry() {
+        return isPartWetPartDry;
+    }
+
+    public void setPartWetPartDry(boolean partWetPartDry) {
+        isPartWetPartDry = partWetPartDry;
+    }
 }

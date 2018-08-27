@@ -18,7 +18,5 @@ public class Aquarium extends Pen {
     public void setAquarium(boolean aquarium) {
         isAquarium = aquarium;
     }
-
-
 }
 

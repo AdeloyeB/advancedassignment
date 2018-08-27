@@ -10,4 +10,12 @@ public class Aviary extends Pen {
         super(name, penType, employee, employee2, area, volume, isPettable, isPreyPen);
         isAviary = true;
     }
+
+    public boolean isAviary() {
+        return isAviary;
+    }
+
+    public void setAviary(boolean aviary) {
+        isAviary = aviary;
+    }
 }

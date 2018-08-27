@@ -10,4 +10,12 @@ public class Dry extends Pen {
         super(name, penType, employee, employee2, area, volume, isPettable, isPreyPen);
         isDry = true;
     }
+
+    public boolean isDry() {
+        return isDry;
+    }
+
+    public void setDry(boolean dry) {
+        isDry = dry;
+    }
 }

@@ -3,7 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Zoo { //ALL ZOO INFO: PENS, ANIMALS AND EMPLOYEES ARE ALL STORED HERE
+public class Zoo implements IZoo{ //ALL ZOO INFO: PENS, ANIMALS AND EMPLOYEES ARE ALL STORED HERE
     private String zoo_name;
     private List<Employee> employeeList;
     private List<Pen> penList;

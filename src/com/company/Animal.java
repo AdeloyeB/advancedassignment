@@ -67,5 +67,20 @@ public class Animal extends LivingCreature {
     public void setPettable(boolean pettable) {
         isPettable = pettable;
     }
+
+    @Override
+    public String toString() {
+        return "Animals:\n" +
+                "Specie: " + specie + '\'' +
+                ", Pen Type: " + type + '\'' +
+                ", Animal Area: " + area +
+                ", Animal Volume: " + volume +
+                ", isPrey: " + isPrey +
+                ", isPettable: " + isPettable +
+                ", ID: " + id + '\'' +
+                ", Name: '" + name + '\'' +
+                "\n" +
+                '}';
+    }
 }
 

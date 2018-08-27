@@ -6,5 +6,10 @@ public interface IAnimal {
     void assignAnimal(Animal tempAnimal, Pen targetPen);
     String checkTypeAnimal();
 
+    Animal getAnimal();
+
+    void completeAssignAnimal();
+
+    void checkIfAnimalSuitableForPen(Animal tempAnimal);
 
 }

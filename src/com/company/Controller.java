@@ -8,6 +8,7 @@ package com.company;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.io.IOException;
 
 import java.io.File;
 import java.io.PrintWriter;
@@ -16,7 +17,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class Controller implements IPen, IAnimal, IProgram {
+public class Controller implements IPen, IAnimal, IEmployee {
     private Gson gson;
 
     public Controller() {
@@ -75,11 +76,14 @@ public class Controller implements IPen, IAnimal, IProgram {
 
     //ANIMAL() IS RAN HERE AND ANIMAL IS ADDED TO UNLISTED LIST
     public Animal createAnimal() {
-        Animal x = Animal();
-        zoo.unlistedAnimailsAdd(x);
-        System.out.println("Animal has successfully been created!");
-        ;
-        return x;
+        try {
+            Animal x = Animal();
+            zoo.unlistedAnimailsAdd(x);
+            System.out.println("Animal has successfully been created!");
+            return x;
+        } catch(Exception e){
+            return null;
+        }
     }
 
     //CREATES A NEW ANIMAL
@@ -125,39 +129,6 @@ public class Controller implements IPen, IAnimal, IProgram {
 
         return animal;
 
-    }
-
-    public Employee assignEmployees() {
-        Scanner in = new Scanner(System.in);
-        System.out.println("Press 1 for Hardip\nPress 2 for Alex\nPress 3 for Farhad\nPress 4 for Alan");
-
-        Employee assignedEmployee = null;
-
-        int choice = in.nextInt();
-
-        switch (choice) {
-
-            case 1:
-                assignedEmployee = zoo.getEmployee(choice);
-                break;
-
-            case 2:
-                assignedEmployee = zoo.getEmployee(choice);
-                break;
-
-            case 3:
-                assignedEmployee = zoo.getEmployee(choice);
-                break;
-
-            case 4:
-                assignedEmployee = zoo.getEmployee(choice);
-                break;
-
-            default:
-                System.out.println("Wrong input");
-                break;
-        }
-        return assignedEmployee;
     }
 
     public Employee assignEmployeesDry() {
@@ -329,10 +300,8 @@ public class Controller implements IPen, IAnimal, IProgram {
         System.out.println("Volume of the pen takes up?");
         double volume = in.nextDouble();
 
-        System.out.println("Area of the pen takes up?");
-        double area = in.nextDouble();
 
-        Aquarium aquarium = new Aquarium(name, penType, assignedEmployee, assignedEmployee2, area, volume, isPettable, isPrey);
+        Aquarium aquarium = new Aquarium(name, penType, assignedEmployee, assignedEmployee2, 0, volume, isPettable, isPrey);
 
         String json = gson.toJson(aquarium);
         zoo.penListAdd(aquarium);
@@ -433,22 +402,27 @@ public class Controller implements IPen, IAnimal, IProgram {
 
             case 1:
                 createDryPen();
+                System.out.println("Sucessfully Created!");
                 break;
 
             case 2:
                 createAquariumPen();
+                System.out.println("Sucessfully Created!");
                 break;
 
             case 3:
                 createPartWetPartDryPen();
+                System.out.println("Sucessfully Created!");
                 break;
 
             case 4:
                 createPettingPen();
+                System.out.println("Sucessfully Created!");
                 break;
 
             case 5:
                 createAviaryPen();
+                System.out.println("Sucessfully Created!");
                 break;
 
             default:
@@ -524,6 +498,7 @@ public class Controller implements IPen, IAnimal, IProgram {
 
     public Animal animalNameCheck() {
         Scanner in = new Scanner(System.in);
+        System.out.println("Enter name of the animal you want to assign to confirm with the program");
 
         String tempAnimal = in.next().toLowerCase();
         Animal tempAnimalObject = null;
@@ -559,7 +534,7 @@ public class Controller implements IPen, IAnimal, IProgram {
         targetPen.setRemainingVolume(calcVol(tempAnimal, targetPen));
     }
 
-    private double calcArea(Animal tempAnimal, Pen targetPen) {
+    public double calcArea(Animal tempAnimal, Pen targetPen) {
         double x = tempAnimal.getArea();
         double y = targetPen.remainingArea;
 
@@ -575,7 +550,7 @@ public class Controller implements IPen, IAnimal, IProgram {
         }
     }
 
-    private double calcVol(Animal tempAnimal, Pen targetPen) {
+    public double calcVol(Animal tempAnimal, Pen targetPen) {
         double x = tempAnimal.getVolume();
         double y = targetPen.remainingVolume;
 
@@ -603,6 +578,7 @@ public class Controller implements IPen, IAnimal, IProgram {
 
 
     public void listUnlistedAnimal() {
+        System.out.println("Unlisted Animals:");
         for (Animal animal : zoo.getUnListedAnimals()) {
             System.out.println("Animal ID: " + animal.id);
             System.out.println("Animal Name: " + animal.name);
@@ -708,116 +684,197 @@ public class Controller implements IPen, IAnimal, IProgram {
 
     }
 
-    private void listDryPensIsPredator() {
+    public void listDryPensIsPredator() {
         try {
             for (Pen pen : zoo.getPenList()) {
-                if((pen.getPenType().equals("dry")) && (!pen.isPreyPen()))
-                System.out.println(pen.id);
-                System.out.println(pen.name);
-                System.out.println(pen.getPenType());
-                System.out.println(!pen.isPreyPen());
-                System.out.println(pen.employee.name);
-                System.out.println(pen.employee2.name + "\n");
+                if ((pen.getPenType().equals("dry")) && (!pen.isPreyPen()))
+                    System.out.println("Pen ID: " + pen.id);
+                System.out.println("Pen Name: " + pen.name);
+                System.out.println("Pen Type: " + pen.getPenType());
+                System.out.println("Total Pen Area: " + pen.getArea());
+                System.out.println("Remaining Pen Area: " + pen.getRemainingArea());
+                System.out.println("Total Pen Volume: " + pen.getVolume());
+                System.out.println("Remaining Pen Volume: " + pen.getRemainingVolume());
+                if (pen.employee.equals(pen.employee2)) {
+                    System.out.println("Assigned Employee One: " + pen.employee.name);
+                } else {
+                    System.out.println("Assigned Employee One: " + pen.employee.name);
+                    System.out.println("Assigned Employee Two: " + pen.employee2.name);
+                }
+                System.out.println("Animals in this pen: " + pen.getAnimalList() + "\n");
             }
         } catch (Exception e) {
             System.out.println("We couldn't list the Dry Predator Pens!");
         }
     }
 
-    private void listPartWetPartDryPensIsPredator() {
+    public void listPartWetPartDryPensIsPredator() {
         try {
             for (Pen pen : zoo.getPenList()) {
-                if((pen.getPenType().equals("partwetpartdry")) && (!pen.isPreyPen()))
-                System.out.println(pen.id);
-                System.out.println(pen.name);
-                System.out.println(pen.getPenType());
-                System.out.println(pen.isPreyPen());
-                System.out.println(pen.employee.name);
-                System.out.println(pen.employee2.name + "\n");
+                if ((pen.getPenType().equals("partwetpartdry")) && (!pen.isPreyPen()))
+                    System.out.println("Pen ID: " + pen.id);
+                System.out.println("Pen Name: " + pen.name);
+                System.out.println("Pen Type: " + pen.getPenType());
+                System.out.println("Total Pen Area: " + pen.getArea());
+                System.out.println("Remaining Pen Area: " + pen.getRemainingArea());
+                System.out.println("Total Pen Volume: " + pen.getVolume());
+                System.out.println("Remaining Pen Volume: " + pen.getRemainingVolume());
+                if (pen.employee.equals(pen.employee2)) {
+                    System.out.println("Assigned Employee One: " + pen.employee.name);
+                } else {
+                    System.out.println("Assigned Employee One: " + pen.employee.name);
+                    System.out.println("Assigned Employee Two: " + pen.employee2.name);
+                }
+                System.out.println("Animals in this pen: " + pen.getAnimalList() + "\n");
             }
         } catch (Exception e) {
             System.out.println("We couldn't list the part wat part dry predator pens!");
         }
     }
 
-    private void listAquariumPensIsPredator() {
+    public void listAquariumPensIsPredator() {
         for (Pen pen : zoo.getPenList()) {
-            if((pen.getPenType().equals("aquarium")) && (!pen.isPreyPen())){
-                System.out.println(pen.id);
-                System.out.println(pen.name);
-                System.out.println(!pen.isPreyPen());
-                System.out.println(pen.employee.name);
-                System.out.println(pen.employee2.name + "\n");
+            if ((pen.getPenType().equals("aquarium")) && (!pen.isPreyPen())) {
+                System.out.println("Pen ID: " + pen.id);
+                System.out.println("Pen Name: " + pen.name);
+                System.out.println("Pen Type: " + pen.getPenType());
+                System.out.println("Total Pen Area: " + pen.getArea());
+                System.out.println("Remaining Pen Area: " + pen.getRemainingArea());
+                System.out.println("Total Pen Volume: " + pen.getVolume());
+                System.out.println("Remaining Pen Volume: " + pen.getRemainingVolume());
+                if (pen.employee.equals(pen.employee2)) {
+                    System.out.println("Assigned Employee One: " + pen.employee.name);
+                } else {
+                    System.out.println("Assigned Employee One: " + pen.employee.name);
+                    System.out.println("Assigned Employee Two: " + pen.employee2.name);
+                }
+                System.out.println("Animals in this pen: " + pen.getAnimalList() + "\n");
             }
         }
     }
 
-    private void listAviaryPensIsPredator() {
+    public void listAviaryPensIsPredator() {
         for (Pen pen : zoo.getPenList()) {
             if (pen.getPenType().equals("aviary") && (!pen.isPreyPen())) {
-                System.out.println(pen.id);
-                System.out.println(pen.name);
-                System.out.println(pen.getPenType());
-                System.out.println(pen.isPreyPen());
-                System.out.println(pen.employee.name);
-                System.out.println(pen.employee2.name + "\n");
+                System.out.println("Pen ID: " + pen.id);
+                System.out.println("Pen Name: " + pen.name);
+                System.out.println("Pen Type: " + pen.getPenType());
+                System.out.println("Total Pen Area: " + pen.getArea());
+                System.out.println("Remaining Pen Area: " + pen.getRemainingArea());
+                System.out.println("Total Pen Volume: " + pen.getVolume());
+                System.out.println("Remaining Pen Volume: " + pen.getRemainingVolume());
+                if (pen.employee.equals(pen.employee2)) {
+                    System.out.println("Assigned Employee One: " + pen.employee.name);
+                } else {
+                    System.out.println("Assigned Employee One: " + pen.employee.name);
+                    System.out.println("Assigned Employee Two: " + pen.employee2.name);
+                }
+                System.out.println("Animals in this pen: " + pen.getAnimalList() + "\n");
             }
         }
     }
 
-    private void listDryPens() {
+    public void listDryPens() {
         for (Pen pen : zoo.getPenList()) {
             if (pen.getPenType().equals("dry")) {
-                System.out.println(pen.id);
-                System.out.println(pen.name);
-                System.out.println(pen.getPenType());
-                System.out.println(pen.isPreyPen());
-                System.out.println(pen.employee.name);
-                System.out.println(pen.employee2.name + "\n");
+                System.out.println("Pen ID: " + pen.id);
+                System.out.println("Pen Name: " + pen.name);
+                System.out.println("Pen Type: " + pen.getPenType());
+                System.out.println("Total Pen Area: " + pen.getArea());
+                System.out.println("Remaining Pen Area: " + pen.getRemainingArea());
+                System.out.println("Total Pen Volume: " + pen.getVolume());
+                System.out.println("Remaining Pen Volume: " + pen.getRemainingVolume());
+                if (pen.employee.equals(pen.employee2)) {
+                    System.out.println("Assigned Employee One: " + pen.employee.name);
+                } else {
+                    System.out.println("Assigned Employee One: " + pen.employee.name);
+                    System.out.println("Assigned Employee Two: " + pen.employee2.name);
+                }
+                System.out.println("Animals in this pen: " + pen.getAnimalList() + "\n");
             }
         }
     }
 
-    private void listPettingPens() {
+    public void listPettingPens() {
         for (Pen pen : zoo.getPenList()) {
-            if(pen.getPenType().equals("pettingpen")){
-                System.out.println(pen.id);
-                System.out.println(pen.name);
-                System.out.println(pen.employee.name);
-                System.out.println(pen.employee2.name);
+            if (pen.getPenType().equals("pettingpen")) {
+                System.out.println("Pen ID: " + pen.id);
+                System.out.println("Pen Name: " + pen.name);
+                System.out.println("Pen Type: " + pen.getPenType());
+                System.out.println("Total Pen Area: " + pen.getArea());
+                System.out.println("Remaining Pen Area: " + pen.getRemainingArea());
+                System.out.println("Total Pen Volume: " + pen.getVolume());
+                System.out.println("Remaining Pen Volume: " + pen.getRemainingVolume());
+                if (pen.employee.equals(pen.employee2)) {
+                    System.out.println("Assigned Employee One: " + pen.employee.name);
+                } else {
+                    System.out.println("Assigned Employee One: " + pen.employee.name);
+                    System.out.println("Assigned Employee Two: " + pen.employee2.name);
+                }
+                System.out.println("Animals in this pen: " + pen.getAnimalList() + "\n");
             }
         }
     }
 
-    private void listPartWetPartDryPens() {
+    public void listPartWetPartDryPens() {
         for (Pen pen : zoo.getPenList()) {
             if (pen.getPenType().equals("partwetpartdry")) {
-                System.out.println(pen.id);
-                System.out.println(pen.name);
-                System.out.println(pen.employee.name);
-                System.out.println(pen.employee2.name + "\n");
+                System.out.println("Pen ID: " + pen.id);
+                System.out.println("Pen Name: " + pen.name);
+                System.out.println("Pen Type: " + pen.getPenType());
+                System.out.println("Total Pen Area: " + pen.getArea());
+                System.out.println("Remaining Pen Area: " + pen.getRemainingArea());
+                System.out.println("Total Pen Volume: " + pen.getVolume());
+                System.out.println("Remaining Pen Volume: " + pen.getRemainingVolume());
+                if (pen.employee.equals(pen.employee2)) {
+                    System.out.println("Assigned Employee One: " + pen.employee.name);
+                } else {
+                    System.out.println("Assigned Employee One: " + pen.employee.name);
+                    System.out.println("Assigned Employee Two: " + pen.employee2.name);
+                }
+                System.out.println("Animals in this pen: " + pen.getAnimalList() + "\n");
             }
         }
     }
 
-    private void listAquariumPens() {
+    public void listAquariumPens() {
         for (Pen pen : zoo.getPenList()) {
             if (pen.getPenType().equals("aquarium")) {
-                System.out.println(pen.id);
-                System.out.println(pen.name);
-                System.out.println(pen.employee.name);
-                System.out.println(pen.employee2.name + "\n");
+                System.out.println("Pen ID: " + pen.id);
+                System.out.println("Pen Name: " + pen.name);
+                System.out.println("Pen Type: " + pen.getPenType());
+                System.out.println("Total Pen Area: " + pen.getArea());
+                System.out.println("Remaining Pen Area: " + pen.getRemainingArea());
+                System.out.println("Total Pen Volume: " + pen.getVolume());
+                System.out.println("Remaining Pen Volume: " + pen.getRemainingVolume());
+                if (pen.employee.equals(pen.employee2)) {
+                    System.out.println("Assigned Employee One: " + pen.employee.name);
+                } else {
+                    System.out.println("Assigned Employee One: " + pen.employee.name);
+                    System.out.println("Assigned Employee Two: " + pen.employee2.name);
+                }
+                System.out.println("Animals in this pen: " + pen.getAnimalList() + "\n");
             }
         }
     }
 
-    private void listAviaryPens() {
+    public void listAviaryPens() {
         for (Pen pen : zoo.getPenList()) {
             if (pen.getPenType().equals("aviary")) {
-                System.out.println(pen.id);
-                System.out.println(pen.name);
-                System.out.println(pen.employee.name);
-                System.out.println(pen.employee2.name + "\n");
+                System.out.println("Pen ID: " + pen.id);
+                System.out.println("Pen Name: " + pen.name);
+                System.out.println("Pen Type: " + pen.getPenType());
+                System.out.println("Total Pen Area: " + pen.getArea());
+                System.out.println("Remaining Pen Area: " + pen.getRemainingArea());
+                System.out.println("Total Pen Volume: " + pen.getVolume());
+                System.out.println("Remaining Pen Volume: " + pen.getRemainingVolume());
+                if (pen.employee.equals(pen.employee2)) {
+                    System.out.println("Assigned Employee One: " + pen.employee.name);
+                } else {
+                    System.out.println("Assigned Employee One: " + pen.employee.name);
+                    System.out.println("Assigned Employee Two: " + pen.employee2.name);
+                }
+                System.out.println("Animals in this pen: " + pen.getAnimalList() + "\n");
             }
         }
     }

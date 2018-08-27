@@ -10,4 +10,12 @@ public class PettingPen extends Pen {
         super(name, penType, employee, employee2, area, volume, isPettable, isPreyPen);
         isPettingPen = true;
     }
+
+    public boolean isPettingPen() {
+        return isPettingPen;
+    }
+
+    public void setPettingPen(boolean pettingPen) {
+        isPettingPen = pettingPen;
+    }
 }

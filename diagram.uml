@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="1101.5" y="0.0">com.company.Pen</node>
+    <node x="200.5" y="1518.0">com.company.LivingCreature</node>
+    <node x="886.0" y="1518.0">com.company.MainMenu</node>
+    <node x="1899.0" y="299.0">com.company.Zoo</node>
+    <node x="543.0" y="1518.0">com.company.API</node>
+    <node x="288.0" y="1641.0">com.company.Animal</node>
+    <node x="156.5" y="475.0">com.company.Controller</node>
+    <node x="330.0" y="132.0">com.company.IAnimal</node>
+    <node x="1343.0" y="916.0">com.company.PartWetPartDry</node>
+    <node x="0.0" y="0.0">com.company.IPen</node>
+    <node x="1891.0" y="0.0">com.company.IZoo</node>
+    <node x="1619.0" y="916.0">com.company.PettingPen</node>
+    <node x="685.0" y="916.0">com.company.Aquarium</node>
+    <node x="924.0" y="916.0">com.company.Aviary</node>
+    <node x="0.0" y="1740.0">com.company.Employee</node>
+    <node x="1142.0" y="916.0">com.company.Dry</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.company.Employee" target="com.company.LivingCreature">
+      <point x="0.0" y="-125.0" />
+      <point x="134.0" y="1616.0" />
+      <point x="232.0" y="1616.0" />
+      <point x="-31.5" y="36.5" />
+    </edge>
+    <edge source="com.company.Animal" target="com.company.LivingCreature">
+      <point x="0.0" y="-224.0" />
+      <point x="393.0" y="1616.0" />
+      <point x="295.0" y="1616.0" />
+      <point x="31.5" y="36.5" />
+    </edge>
+    <edge source="com.company.Zoo" target="com.company.IZoo">
+      <point x="0.0" y="-290.0" />
+      <point x="0.0" y="124.5" />
+    </edge>
+    <edge source="com.company.Aviary" target="com.company.Pen">
+      <point x="0.0" y="-48.0" />
+      <point x="1023.0" y="896.0" />
+      <point x="1180.1000000000001" y="896.0" />
+      <point x="-52.39999999999998" y="433.0" />
+    </edge>
+    <edge source="com.company.PartWetPartDry" target="com.company.Pen">
+      <point x="0.0" y="-48.0" />
+      <point x="1471.0" y="896.0" />
+      <point x="1284.9" y="896.0" />
+      <point x="52.40000000000009" y="433.0" />
+    </edge>
+    <edge source="com.company.Controller" target="com.company.IAnimal">
+      <point x="81.75" y="-499.0" />
+      <point x="401.75" y="450.0" />
+      <point x="485.0" y="450.0" />
+      <point x="0.0" y="80.5" />
+    </edge>
+    <edge source="com.company.Dry" target="com.company.Pen">
+      <point x="0.0" y="-48.0" />
+      <point x="0.0" y="433.0" />
+    </edge>
+    <edge source="com.company.Aquarium" target="com.company.Pen">
+      <point x="0.0" y="-48.0" />
+      <point x="794.5" y="886.0" />
+      <point x="1127.7" y="886.0" />
+      <point x="-104.79999999999995" y="433.0" />
+    </edge>
+    <edge source="com.company.PettingPen" target="com.company.Pen">
+      <point x="0.0" y="-48.0" />
+      <point x="1732.5" y="886.0" />
+      <point x="1337.3" y="886.0" />
+      <point x="104.79999999999995" y="433.0" />
+    </edge>
+    <edge source="com.company.Controller" target="com.company.IPen">
+      <point x="-81.75" y="-499.0" />
+      <point x="238.25" y="450.0" />
+      <point x="155.0" y="450.0" />
+      <point x="0.0" y="212.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5000000000000011" x="355.3518518518558" y="1257.9999999999977" />
+  <SelectedNodes>
+    <node>com.company.Pen</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
